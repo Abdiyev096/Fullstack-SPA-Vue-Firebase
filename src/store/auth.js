@@ -11,13 +11,13 @@ export default {
             }
         },
 
-        async register({dispatch, commit}, {email, password, name}) {
+        async register({dispatch, commit}, {email, password, name, bill}) {
             try {
                 await firebase.auth().createUserWithEmailAndPassword(email, password)
                 const uid = await dispatch('getUserID')
                 if(uid) {
                     await firebase.database().ref(`/users/${uid}/info`).set({
-                        bill: 100000,
+                        bill,
                         name
                     })
                 }

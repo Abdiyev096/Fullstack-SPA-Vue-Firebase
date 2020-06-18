@@ -2,13 +2,13 @@
     <div>
         <div>
             <div class="breadcrumb-wrap">
-            <router-link to="/history" class="breadcrumb">История</router-link>
+            <router-link to="/history" class="breadcrumb">{{'history' | localize}}</router-link>
             <a class="breadcrumb" @click.prevent>
                 {{record.type === 'income' ? 'Доход' : 'Расход'}}
             </a>
             </div>
             <Loader v-if="loading" />
-            <p class="center" v-else-if="!record">Такой записи нету</p>
+            <p class="center" v-else-if="!record">{{'noRecord' | localize}}</p>
             <div class="row" v-else>
             <div class="col s12 m6">
                 <div class="card" 
@@ -17,9 +17,9 @@
                             'green': record.type === 'income'
                         }">
                 <div class="card-content white-text">
-                    <p>Описание: {{record.description}}</p>
-                    <p>Сумма: {{record.amount | currencyFilter('KZT')}}</p>
-                    <p>Категория: {{record.name}}</p>
+                    <p>{{'description' | localize}}: {{record.description}}</p>
+                    <p>{{'sum' | localize}}: {{record.amount | currencyFilter('KZT')}}</p>
+                    <p>{{'category' | localize}}: {{record.name}}</p>
 
                     <small>{{new Date(record.date) | dateFilter('datetime')}}</small>
                 </div>

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="page-title">
-            <h3>Планирование</h3>
+            <h3>{{'planning' | localize}}</h3>
             <h4>{{currentBill | currencyFilter('KZT')}}</h4>
         </div>
 
@@ -9,7 +9,7 @@
 
         <p 
             v-else-if="!categories.length" 
-            class="center">Категории пока нету</p>
+            class="center">{{'noCategory' | localize}}</p>
 
         <section v-else>
             <div v-for="c in categories"

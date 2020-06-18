@@ -8,7 +8,7 @@
                     <span class="black-text">{{currentDate | dateFilter}}</span>
                 </div>
 
-                <ul class="right hide-on-small-and-down">
+                <ul class="right ">
                     <li>
                         <a
                             class="dropdown-trigger black-text"
@@ -23,13 +23,13 @@
                         <ul id='dropdown' class='dropdown-content'>
                             <li>
                                 <router-link class="black-text" to="/profile">
-                                <i class="material-icons">account_circle</i>Профиль
+                                <i class="material-icons">account_circle</i>{{`profileTitle` | localize}}
                                 </router-link>
                             </li>
                             <li class="divider" tabindex="-1"></li>
                             <li>
                                 <a @click.prevent="logout" href="#" class="black-text">
-                                <i class="material-icons">assignment_return</i>Выйти
+                                <i class="material-icons">assignment_return</i>{{`quit` | localize}}
                                 </a>
                             </li>
                         </ul>

@@ -45,6 +45,24 @@
             <small class="helper-text invalid"
                     v-if="!$v.name.required && $v.name.$dirty">Имя не должно быть пустым</small>
             </div>
+            <div class="input-field">
+            <input
+                id="amount"
+                type="text"
+                v-model="amount"
+                :class="{invalid: (!$v.name.required && $v.name.$dirty)}"
+            >
+            <label for="amount">Сколько денег у вас есть?</label>
+            <small class="helper-text invalid"
+                    v-if="!$v.name.required && $v.name.$dirty">Поле не должно быть пустым</small>
+            </div>
+            <div class="input-field col s12 lang-select">
+                    <select ref="select" v-model="locale">
+                    <option value="ru-RU">Русский</option>
+                    <option value="en-US">English</option>
+                    </select>
+                    <label>{{`chooseLang` | localize}}</label>
+            </div>
             <p>
             <label>
                 <input  type="checkbox"
@@ -82,7 +100,10 @@ export default {
             email: '',
             password: '',
             name: '',
-            isAgree: false
+            amount: '',
+            locale: 'ru-RU',
+            isAgree: false,
+            select: null
         }
     },
     methods: {
@@ -96,12 +117,22 @@ export default {
                 email: this.email,
                 password: this.password,
                 name: this.name,
+                bill: this.amount,
+                locale: this.locale
             }
             
             try {
                 await this.$store.dispatch('register', userData)
                 this.$router.push('/')
             } catch(e) {}
+        }
+    },
+    mounted() {
+        this.select = M.FormSelect.init(this.$refs.select)
+    },
+    beforeDestroy() {
+        if(this.select && this.select.destroy) {
+            this.select.destroy()
         }
     },
     validations: {

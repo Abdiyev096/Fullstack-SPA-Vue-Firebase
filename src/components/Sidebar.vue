@@ -7,7 +7,7 @@
                         tag="li"
                         active-class="active"
                         exact>
-                <a href="#" class="waves-effect waves-orange pointer">{{title}}</a>
+                <a href="#" class="waves-effect waves-orange pointer">{{title | localize}}</a>
             </router-link>
     </ul>
 </template>
@@ -21,11 +21,11 @@ export default {
     data() {
         return {
             links: [
-                {title: 'Счёт', url: '/'},
-                {title: 'История', url: '/history'},
-                {title: 'Планирование', url: '/planning'},
-                {title: 'Новая запись', url: '/record'},
-                {title: 'Категории', url: '/categories'}
+                {title: 'bill', url: '/'},
+                {title: 'history', url: '/history'},
+                {title: 'planning', url: '/planning'},
+                {title: 'new-record', url: '/record'},
+                {title: 'categories', url: '/categories'}
             ]
         }
     }

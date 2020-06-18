@@ -2,7 +2,7 @@
   <div class="col s12 m6">
     <div>
       <div class="page-subtitle">
-        <h4>Редактировать</h4>
+        <h4>{{'edit' | localize}}</h4>
       </div>
 
       <form @submit.prevent="submitHandler">
@@ -14,7 +14,7 @@
               :value="category.id"
             >{{category.categoryTitle}}</option>
           </select>
-          <label>Выберите категорию</label>
+          <label>{{'chooseCategory' | localize}}</label>
         </div>
 
         <div class="input-field">
@@ -24,15 +24,15 @@
             v-model.number="limit"
             :class="{invalid: $v.limit.$dirty && !$v.limit.minValue}"
           />
-          <label for="limit">Лимит</label>
+          <label for="limit">{{'limit' | localize}}</label>
           <span
             class="helper-text invalid"
             v-if="$v.limit.$dirty && !$v.limit.minValue"
-          >Минимальная сумма 100 тенге</span>
+          >{{'minimalSum' | localize}}</span>
         </div>
 
         <button class="btn waves-effect waves-light" type="submit">
-          Обновить
+          {{'update' | localize}}
           <i class="material-icons right">send</i>
         </button>
       </form>

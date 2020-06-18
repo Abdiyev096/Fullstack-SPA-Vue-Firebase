@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="page-title">
-            <h3>Профиль</h3>
+            <h3>{{`profileTitle` | localize}}</h3>
         </div>
 
         <form class="form" @submit.prevent="submitHandler">
@@ -12,14 +12,22 @@
                 v-model="name"
                 :class="{invalid: $v.name.$dirty && !$v.name.required}"
             >
-            <label for="description">Имя</label>
+            <label for="description">{{`name` | localize}}</label>
             <span
                     class="helper-text invalid"
                     v-if="$v.name.$dirty && !$v.name.required">Для изменения имени, напишите новое имя</span>
             </div>
 
+                <div class="input-field col s12 lang-select">
+                    <select ref="select" v-model="locale">
+                    <option value="ru-RU">Русский</option>
+                    <option value="en-US">English</option>
+                    </select>
+                    <label>{{`chooseLang` | localize}}</label>
+                </div>
+
             <button class="btn waves-effect waves-light" type="submit">
-            Обновить
+            {{`update` | localize}}
             <i class="material-icons right">send</i>
             </button>
         </form>
@@ -34,7 +42,9 @@ export default {
 
     data() {
         return {
-            name: ''
+            name: '',
+            locale: 'ru-RU',
+            select: null
         }
     },
 
@@ -46,9 +56,19 @@ export default {
             }
 
             try{
-                await this.$store.dispatch('updateInfo', {name: this.name})
+                await this.$store.dispatch('updateInfo', {name: this.name, locale: this.locale})
                 this.$message('Имя успешно изменено')
             } catch(e) {}
+        }
+    },
+
+    mounted() {
+        this.select = M.FormSelect.init(this.$refs.select)
+    },
+
+    beforeDestroy() {
+        if(this.select && this.select.destroy) {
+            this.select.destroy()
         }
     },
 
@@ -57,3 +77,9 @@ export default {
     }
 }
 </script>
+
+<style>
+    .lang-select {
+        margin: 25px 0;
+    }
+</style>

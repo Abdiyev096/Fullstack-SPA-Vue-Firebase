@@ -6,6 +6,7 @@ import router from './router'
 import store from './store'
 import dateFilter from './Filters/dateFilter'
 import currencyFilter from './Filters/currencyFilter'
+import localizeFilter from './Filters/localizeFilter'
 import messagePlugin from './utils/message.plugin'
 import './registerServiceWorker'
 import 'materialize-css/dist/js/materialize.min'
@@ -20,6 +21,7 @@ Vue.use(messagePlugin)
 Vue.use(Vuelidate)
 Vue.filter('dateFilter', dateFilter)
 Vue.filter('currencyFilter', currencyFilter)
+Vue.filter('localize', localizeFilter)
 Vue.component('Loader', Loader)
 
 firebase.initializeApp({

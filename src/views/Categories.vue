@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="page-title">
-            <h3>Категории</h3>
+            <h3>{{'categories' | localize}}</h3>
         </div>
         <Loader v-if="loading"/>
         <section v-else>
@@ -11,7 +11,7 @@
                           :categories="categories"
                           :key="categories.length"/>
 
-            <p v-else class="center">Категории пока нету</p>
+            <p v-else class="center">{{'noCategory' | localize}}</p>
             </div>
         </section>
     </div>
